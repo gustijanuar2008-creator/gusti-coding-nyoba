@@ -1,67 +1,98 @@
-// Open Gift Box
+// Buka Kado + Autoplay Lagu
 function openGift() {
+    const giftLid = document.getElementById('gift-lid');
     const introScreen = document.getElementById('intro-screen');
     const mainContent = document.getElementById('main-content');
-    
-    introScreen.style.transition = 'opacity 0.8s ease';
-    introScreen.style.opacity = '0';
-    
+    const audio = document.getElementById('bg-music');
+
+    // Animasi Tutup Kado Terbuka
+    if (giftLid) giftLid.classList.add('open');
+
+    // Coba putar audio mp3 jika ada file song.mp3
+    if (audio) {
+        audio.play().catch(err => {
+            console.log("Autoplay audio membutuhkan file song.mp3 atau interaksi user", err);
+            // Fallback audio synth jika tidak ada file mp3
+            playFallbackSynth();
+        });
+        const btn = document.getElementById('music-toggle');
+        if (btn) btn.innerText = '⏸ Pause Music';
+    }
+
     setTimeout(() => {
-        introScreen.classList.add('hidden');
-        mainContent.classList.remove('hidden');
-        initAudio();
-    }, 800);
+        introScreen.style.transition = 'opacity 0.8s ease';
+        introScreen.style.opacity = '0';
+        
+        setTimeout(() => {
+            introScreen.classList.add('hidden');
+            mainContent.classList.remove('hidden');
+        }, 800);
+    }, 400);
 }
 
-// Web Audio API Ambient Synthesizer
-let audioCtx;
-let isPlaying = false;
-let timerId = null;
-
-function initAudio() {
-    if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    }
-}
-
-function playGuitarChord() {
-    if (!audioCtx) return;
-    const notes = [261.63, 329.63, 392.00, 523.25]; // C Major Melodic Notes
-    notes.forEach((freq, i) => {
-        const osc = audioCtx.createOscillator();
-        const gain = audioCtx.createGain();
-        
-        osc.type = 'sine';
-        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.15);
-        
-        gain.gain.setValueAtTime(0.08, audioCtx.currentTime + i * 0.15);
-        gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + i * 0.15 + 2.5);
-        
-        osc.connect(gain);
-        gain.connect(audioCtx.destination);
-        
-        osc.start(audioCtx.currentTime + i * 0.15);
-        osc.stop(audioCtx.currentTime + i * 0.15 + 2.5);
-    });
-}
-
+// Toggle Play/Pause Musik
 function toggleMusic() {
-    initAudio();
+    const audio = document.getElementById('bg-music');
     const btn = document.getElementById('music-toggle');
-    
-    if (!isPlaying) {
-        isPlaying = true;
-        btn.innerText = '⏸ Pause Music';
-        playGuitarChord();
-        timerId = setInterval(playGuitarChord, 3500);
-    } else {
-        isPlaying = false;
+
+    if (audio && audio.src && !audio.paused) {
+        audio.pause();
         btn.innerText = '🎵 Play Music';
-        clearInterval(timerId);
+    } else if (audio && audio.src) {
+        audio.play().then(() => {
+            btn.innerText = '⏸ Pause Music';
+        }).catch(() => {
+            playFallbackSynth();
+            btn.innerText = '⏸ Pause Music';
+        });
+    } else {
+        playFallbackSynth();
     }
 }
 
-// Rose Burst Effect
+// Fallback Sound Synthesizer jika tidak ada file mp3
+let synthInterval = null;
+let isSynthPlaying = false;
+
+function playFallbackSynth() {
+    const btn = document.getElementById('music-toggle');
+    if (isSynthPlaying) {
+        clearInterval(synthInterval);
+        isSynthPlaying = false;
+        if (btn) btn.innerText = '🎵 Play Music';
+        return;
+    }
+
+    isSynthPlaying = true;
+    if (btn) btn.innerText = '⏸ Pause Music';
+
+    const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    
+    function playNotes() {
+        const notes = [220.00, 277.18, 329.63, 440.00]; // Soft A-major chord
+        notes.forEach((freq, i) => {
+            const osc = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+            
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.2);
+            
+            gain.gain.setValueAtTime(0.05, audioCtx.currentTime + i * 0.2);
+            gain.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + i * 0.2 + 2.5);
+            
+            osc.connect(gain);
+            gain.connect(audioCtx.destination);
+            
+            osc.start(audioCtx.currentTime + i * 0.2);
+            osc.stop(audioCtx.currentTime + i * 0.2 + 2.5);
+        });
+    }
+
+    playNotes();
+    synthInterval = setInterval(playNotes, 3800);
+}
+
+// Efek Meletup Mawar
 function bloomRose(event, element) {
     element.style.transform = 'scale(1.5) rotate(15deg)';
     setTimeout(() => {
@@ -79,7 +110,8 @@ function bloomRose(event, element) {
         setTimeout(() => heart.remove(), 1500);
     }
 }
-// Handle Reply Form secara Interaktif di Frontend
+
+// Handle Form Balasan
 function handleReply(event) {
     event.preventDefault();
     
@@ -88,7 +120,7 @@ function handleReply(event) {
     const alertBox = document.getElementById('reply-alert');
     const form = document.getElementById('replyForm');
     
-    alertBox.innerText = `Terima kasih ${name}! Pesan kamu ("${decision}") berhasil terkirim ❤️`;
+    alertBox.innerText = `Terima kasih ${name}! Balasan kamu ("${decision}") berhasil terkirim ❤️`;
     alertBox.classList.remove('hidden');
     
     form.reset();

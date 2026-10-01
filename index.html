@@ -9,11 +9,15 @@
 </head>
 <body>
 
+    <!-- Audio Element (Ganti lagu ke All I Need To Hear - The 1975) -->
+    <!-- Jika kamu punya file lagu mp3, namai 'song.mp3' dan taruh di folder yang sama -->
+    <audio id="bg-music" loop src="song.mp3"></audio>
+
     <!-- Intro Gift Box -->
     <div id="intro-screen">
         <div class="gift-container" onclick="openGift()">
-            <div class="gift-box">
-                <div class="gift-lid"></div>
+            <div class="gift-box" id="gift-box">
+                <div class="gift-lid" id="gift-lid"></div>
                 <div class="gift-ribbon"></div>
             </div>
             <p class="tap-hint">✨ Tap / Klik kado untuk membuka ✨</p>
@@ -26,7 +30,7 @@
         <!-- Music Control Bar -->
         <div class="music-bar">
             <button id="music-toggle" onclick="toggleMusic()">🎵 Play Music</button>
-            <span id="song-title">Double Take - Dhruv (Acoustic Ambient)</span>
+            <span id="song-title">All I Need To Hear - The 1975</span>
         </div>
 
         <!-- Hero Section -->
