@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maafin Aku Ya, Sayangku</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,400&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Intro Gift Box -->
+    <div id="intro-screen">
+        <div class="gift-container" onclick="openGift()">
+            <div class="gift-box">
+                <div class="gift-lid"></div>
+                <div class="gift-ribbon"></div>
+            </div>
+            <p class="tap-hint">✨ Tap / Klik kado untuk membuka ✨</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content" class="hidden">
+        
+        <!-- Music Control Bar -->
+        <div class="music-bar">
+            <button id="music-toggle" onclick="toggleMusic()">🎵 Play Music</button>
+            <span id="song-title">Double Take - Dhruv (Acoustic Ambient)</span>
+        </div>
+
+        <!-- Hero Section -->
+        <header class="hero-section">
+            <h1 class="main-title">Maafin Aku Ya, <span class="highlight">Sayangku Cintakuu.</span></h1>
+            <p class="subtitle">"This isn't just words. This is me, being fully vulnerable, because you deserve nothing less than that."</p>
+            <div class="scroll-down">
+                <span>SCROLL TO DISCOVER</span>
+                <div class="arrow">↓</div>
+            </div>
+        </header>
+
+        <!-- Letter Section -->
+        <section class="section letter-section">
+            <p class="tagline">straight from my heart, no filter</p>
+            <h2>I'm sorry for hurting you, genuinely</h2>
+            <div class="letter-body">
+                <p>Sayang, I know I've hurt you, and honestly that's the last thing I ever wanted to do. Maaf kalau selama ini ada kata-kata, sikap, atau tindakan aku yang bikin hati kamu capek. Kadang aku terlalu sibuk sama kepala aku sendiri sampai lupa kalau ada hati kamu yang juga harus aku jaga.</p>
+                <p>The truth is, I love you so much. Makanya rasanya makin sakit ketika aku sadar kalau orang yang paling aku sayang justru terluka karena aku. Aku tau cinta aja ga cukup kalau ga dibarengin sama cara yang benar untuk memperlakukan seseorang.</p>
+                <p>Aku ga minta kamu langsung lupa sama semua kesalahan aku. I know healing takes time. Tapi aku harap kamu bisa percaya kalau penyesalan ini beneran datang dari hati aku.</p>
+                <p class="signature">Yours, still, Always ❤️</p>
+            </div>
+        </section>
+
+        <!-- Reasons / Cards Section -->
+        <section class="section cards-section">
+            <p class="tagline">things I genuinely regret</p>
+            <h2>Why I'm Sorry</h2>
+            <div class="cards-grid">
+                <div class="card">
+                    <span class="card-icon">🌹</span>
+                    <h3>I Was Careless</h3>
+                    <p>You gave me your trust and I treated it like it wasn't the most precious thing I had.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🌙</span>
+                    <h3>I Wasn't Present</h3>
+                    <p>You deserved my full attention and I gave you half of it. That wasn't fair at all.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">🌸</span>
+                    <h3>I Made You Doubt</h3>
+                    <p>You should never have had to question how much you matter to me. That's entirely my fault.</p>
+                </div>
+                <div class="card">
+                    <span class="card-icon">✨</span>
+                    <h3>I Hurt Your Feelings</h3>
+                    <p>And that keeps me up at night. You feel things deeply and I was not careful with that.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rose Garden Section -->
+        <section class="section garden-section">
+            <p class="tagline">our secret garden</p>
+            <h2>A Garden Grown Just For You</h2>
+            <p class="quote">"These four roses are just like candles in the dark. Even if one were to fade away, the others will keep burning with endless devotion."</p>
+            <div class="roses-container">
+                <div class="rose" onclick="bloomRose(event, this)">🌹</div>
+                <div class="rose" onclick="bloomRose(event, this)">🌹</div>
+                <div class="rose" onclick="bloomRose(event, this)">🌹</div>
+                <div class="rose" onclick="bloomRose(event, this)">🌹</div>
+            </div>
+            <p class="hover-hint">★ KLIK MAWAR UNTUK MERASAKAN HANGATNYA ★</p>
+        </section>
+
+        <!-- Polaroid Section -->
+        <section class="section polaroid-section">
+            <p class="tagline">why you still matter, always</p>
+            <h2>You're Still Everything</h2>
+            <div class="polaroid-grid">
+                <div class="polaroid-card">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=600&q=80" alt="Memory 1">
+                    </div>
+                    <p class="polaroid-caption">still</p>
+                </div>
+                <div class="polaroid-card">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=600&q=80" alt="Memory 2">
+                    </div>
+                    <p class="polaroid-caption">my</p>
+                </div>
+                <div class="polaroid-card">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=600&q=80" alt="Memory 3">
+                    </div>
+                    <p class="polaroid-caption">favorite</p>
+                </div>
+                <div class="polaroid-card">
+                    <div class="img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1494774157365-9e04c6720e47?auto=format&fit=crop&w=600&q=80" alt="Memory 4">
+                    </div>
+                    <p class="polaroid-caption">person</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Form Section -->
+        <section class="section reply-section">
+            <p class="tagline">no excuses, just love</p>
+            <h2>Balas Pesan Ini</h2>
+            <div id="reply-alert" class="alert-success hidden"></div>
+            <form id="replyForm" onsubmit="handleReply(event)" class="reply-form">
+                <div class="form-group">
+                    <label>Nama Kamu:</label>
+                    <input type="text" id="replyName" required placeholder="Masukkan nama kamu...">
+                </div>
+                <div class="form-group">
+                    <label>Keputusan Kamu:</label>
+                    <select id="replyDecision" required>
+                        <option value="Aku Maafin">Aku Maafin ❤️</option>
+                        <option value="Aku Butuh Waktu">Aku Butuh Waktu ⏳</option>
+                        <option value="Maafin Ada Syarat">Maafin Tapi Ada Syarat 😏</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Pesan / Keinginan Kamu:</label>
+                    <textarea id="replyMessage" rows="4" required placeholder="Tulis apa saja yang ada di hatimu..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Kirim Balasan ✨</button>
+            </form>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>Made with ❤️, patience, and a lot of courage</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
