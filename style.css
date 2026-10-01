@@ -15,7 +15,7 @@ body {
     display: none !important;
 }
 
-/* Intro Screen */
+/* Intro Screen - Ditengah & Simetris sempurna */
 #intro-screen {
     position: fixed;
     top: 0;
@@ -30,8 +30,12 @@ body {
 }
 
 .gift-container {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
+    text-align: center;
 }
 
 .gift-box {
@@ -42,6 +46,7 @@ body {
     border-radius: 12px;
     box-shadow: 0 10px 30px rgba(255, 51, 102, 0.4);
     transition: transform 0.3s ease;
+    margin: 0 auto;
 }
 
 .gift-container:hover .gift-box {
@@ -50,27 +55,31 @@ body {
 
 .gift-lid {
     position: absolute;
-    top: -15px;
-    left: -10px;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 140px;
-    height: 30px;
+    height: 32px;
     background: #e62e5c;
     border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.25);
     transition: transform 0.6s ease, opacity 0.6s ease;
 }
 
 .gift-lid.open {
-    transform: translateY(-80px) rotate(-20deg);
+    transform: translate(-50%, -80px) rotate(-20deg);
     opacity: 0;
 }
 
 .gift-ribbon {
     position: absolute;
-    width: 20px;
+    width: 22px;
     height: 100%;
     background: #ffd1dc;
     left: 50%;
     transform: translateX(-50%);
+    top: 0;
+    border-radius: 2px;
 }
 
 .tap-hint {
@@ -166,7 +175,7 @@ body {
     60% { transform: translateY(-4px); }
 }
 
-/* Sections */
+/* Sections General */
 .section {
     padding: 60px 20px;
     max-width: 900px;
@@ -361,7 +370,7 @@ body {
     color: #a8929e;
 }
 
-/* Floating Heart Effect */
+/* Heart Particle Floating */
 .heart-particle {
     position: fixed;
     pointer-events: none;

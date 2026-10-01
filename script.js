@@ -1,18 +1,17 @@
-// Buka Kado + Autoplay Lagu
+// Buka Kado + Play Musik
 function openGift() {
     const giftLid = document.getElementById('gift-lid');
     const introScreen = document.getElementById('intro-screen');
     const mainContent = document.getElementById('main-content');
     const audio = document.getElementById('bg-music');
 
-    // Animasi Tutup Kado Terbuka
+    // Animasi tutup kado terangkat
     if (giftLid) giftLid.classList.add('open');
 
-    // Coba putar audio mp3 jika ada file song.mp3
+    // Putar audio jika file MP3 tersedia
     if (audio) {
         audio.play().catch(err => {
-            console.log("Autoplay audio membutuhkan file song.mp3 atau interaksi user", err);
-            // Fallback audio synth jika tidak ada file mp3
+            console.log("Autoplay memerlukan file song.mp3 di folder repo", err);
             playFallbackSynth();
         });
         const btn = document.getElementById('music-toggle');
@@ -30,7 +29,7 @@ function openGift() {
     }, 400);
 }
 
-// Toggle Play/Pause Musik
+// Toggle Play / Pause Audio
 function toggleMusic() {
     const audio = document.getElementById('bg-music');
     const btn = document.getElementById('music-toggle');
@@ -50,7 +49,7 @@ function toggleMusic() {
     }
 }
 
-// Fallback Sound Synthesizer jika tidak ada file mp3
+// Sound Synthesizer Cadangan jika file song.mp3 belum dimasukkan
 let synthInterval = null;
 let isSynthPlaying = false;
 
@@ -69,7 +68,7 @@ function playFallbackSynth() {
     const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
     
     function playNotes() {
-        const notes = [220.00, 277.18, 329.63, 440.00]; // Soft A-major chord
+        const notes = [220.00, 277.18, 329.63, 440.00];
         notes.forEach((freq, i) => {
             const osc = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
@@ -92,7 +91,7 @@ function playFallbackSynth() {
     synthInterval = setInterval(playNotes, 3800);
 }
 
-// Efek Meletup Mawar
+// Efek Letupan Mawar
 function bloomRose(event, element) {
     element.style.transform = 'scale(1.5) rotate(15deg)';
     setTimeout(() => {
